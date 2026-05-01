@@ -1,0 +1,369 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: stretch;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-item>a,
+.nav-item>span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 18px;
+    color: #444;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-item>a:hover,
+.nav-item>span:hover {
+    background-color: #f0f6ff;
+    color: #4a90e2;
+}
+
+.nav-item.active>a,
+.nav-item.active>span {
+    color: #4a90e2;
+    border-bottom: 3px solid #4a90e2;
+    background-color: #f0f6ff;
+}
+
+/* dropdown */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    min-width: 240px;
+    z-index: 100;
+}
+
+.nav-item:hover .dropdown {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    padding: 11px 16px;
+    font-size: 14px;
+    color: #444;
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown a:last-child {
+    border-bottom: none;
+}
+
+.dropdown a:hover {
+    background-color: #f0f6ff;
+    color: #4a90e2;
+}
+
+/* ── CONTENT ── */
+.content {
+    padding: 28px 32px;
+}
+
+/* ── PAGES ── */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.greeting {
+    font-size: 14px;
+    color: #555;
+}
+
+/* TRACKING */
+.tracking-form {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.tracking-form .form-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.tracking-form label {
+    font-size: 14px;
+    color: #555;
+    white-space: nowrap;
+    min-width: 110px;
+}
+
+.tracking-form input[type="text"] {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.tracking-form input[type="text"]:focus {
+    border-color: #4a90e2;
+}
+
+.tracking-form .btn-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-lacak {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 9px 28px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-lacak:hover {
+    background-color: #357abd;
+}
+
+.error-lacak {
+    font-size: 12px;
+    color: red;
+    display: none;
+    margin-bottom: 10px;
+}
+
+/* Info cards */
+.info-cards {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+.info-card {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    padding: 20px 24px;
+    flex: 1;
+    min-width: 160px;
+    border-top: 3px solid #4a90e2;
+}
+
+.info-card .card-label {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.info-card .card-value {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Placeholder */
+.placeholder {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    padding: 60px;
+    text-align: center;
+    color: #bbb;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.placeholder p {
+    margin-top: 6px;
+}
+
+/* Paket info card */
+.paket-info {
+    display: none;
+    background-color: #4a90e2;
+    border-radius: 6px;
+    padding: 20px 24px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.paket-info.show {
+    display: block;
+}
+
+.paket-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.paket-nama {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.paket-no {
+    font-size: 13px;
+    margin-top: 3px;
+    opacity: 0.9;
+}
+
+.paket-tgl {
+    font-size: 12px;
+    text-align: right;
+    opacity: 0.85;
+    line-height: 1.6;
+}
+
+.paket-rute {
+    font-size: 12px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    margin-top: 6px;
+}
+
+.paket-alamat {
+    font-size: 12px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+
+/* Timeline */
+.timeline-section {
+    display: none;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 24px;
+}
+
+.timeline-section.show {
+    display: block;
+}
+
+.timeline-section h4 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 28px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background-color: #e0e0e0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -23px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #ccc;
+}
+
+.timeline-item.selesai .timeline-dot {
+    background-color: #4a90e2;
+    box-shadow: 0 0 0 2px #4a90e2;
+}
+
+.timeline-item.proses .timeline-dot {
+    background-color: #f0ad4e;
+    box-shadow: 0 0 0 2px #f0ad4e;
+}
+
+.timeline-keterangan {
+    flex: 1;
+}
+
+.timeline-keterangan .status {
+    font-size: 13px;
+    color: #333;
+    font-weight: bold;
+}
+
+.timeline-keterangan .sub {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
+
+.timeline-waktu {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+    text-align: right;
+}

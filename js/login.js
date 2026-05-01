@@ -27,7 +27,8 @@ function login() {
     }
     if (valid) {
         alert('Login berhasil!');
-        localStorage.setItem("sesiUser", JSON.stringify)
+        var sesi = JSON.stringify(data);
+        localStorage.setItem("sesiUser", sesi);
         window.location.href = "dashboard.html";
     } else {
         alert('Username atau password tidak tepat!');

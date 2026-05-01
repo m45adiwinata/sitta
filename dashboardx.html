@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - SITTA</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: Arial, sans-serif;
@@ -17,7 +13,7 @@
       min-height: 100vh;
     }
 
-    /* ── NAVBAR ── */
+    /* NAVBAR */
     .navbar {
       background-color: #fff;
       border-bottom: 1px solid #ddd;
@@ -25,9 +21,7 @@
       align-items: stretch;
     }
 
-    .nav-item {
-      position: relative;
-    }
+    .nav-item { position: relative; }
 
     .nav-item > a,
     .nav-item > span {
@@ -57,7 +51,6 @@
       background-color: #f0f6ff;
     }
 
-    /* dropdown */
     .dropdown {
       display: none;
       position: absolute;
@@ -70,9 +63,7 @@
       z-index: 100;
     }
 
-    .nav-item:hover .dropdown {
-      display: block;
-    }
+    .nav-item:hover .dropdown { display: block; }
 
     .dropdown a {
       display: block;
@@ -83,28 +74,18 @@
       border-bottom: 1px solid #f0f0f0;
     }
 
-    .dropdown a:last-child {
-      border-bottom: none;
-    }
+    .dropdown a:last-child { border-bottom: none; }
 
     .dropdown a:hover {
       background-color: #f0f6ff;
       color: #4a90e2;
     }
 
-    /* ── CONTENT ── */
-    .content {
-      padding: 28px 32px;
-    }
+    /* CONTENT */
+    .content { padding: 28px 32px; }
 
-    /* ── PAGES ── */
-    .page {
-      display: none;
-    }
-
-    .page.active {
-      display: block;
-    }
+    .page { display: none; }
+    .page.active { display: block; }
 
     .page-title {
       font-size: 16px;
@@ -113,12 +94,9 @@
       margin-bottom: 6px;
     }
 
-    .greeting {
-      font-size: 14px;
-      color: #555;
-    }
+    .greeting { font-size: 14px; color: #555; }
 
-    /* Info cards */
+    /* Info cards - dashboard */
     .info-cards {
       display: flex;
       gap: 16px;
@@ -137,17 +115,8 @@
       border-top: 3px solid #4a90e2;
     }
 
-    .info-card .card-label {
-      font-size: 12px;
-      color: #888;
-      margin-bottom: 8px;
-    }
-
-    .info-card .card-value {
-      font-size: 26px;
-      font-weight: bold;
-      color: #333;
-    }
+    .info-card .card-label { font-size: 12px; color: #888; margin-bottom: 8px; }
+    .info-card .card-value { font-size: 26px; font-weight: bold; color: #333; }
 
     /* Placeholder */
     .placeholder {
@@ -161,46 +130,172 @@
       margin-top: 4px;
     }
 
-    .placeholder p {
-      margin-top: 6px;
+    /* TRACKING */
+    .tracking-form {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 24px;
+      margin-bottom: 20px;
     }
+
+    .tracking-form .form-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .tracking-form label {
+      font-size: 14px;
+      color: #555;
+      white-space: nowrap;
+      min-width: 110px;
+    }
+
+    .tracking-form input[type="text"] {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .tracking-form input[type="text"]:focus { border-color: #4a90e2; }
+
+    .tracking-form .btn-row { display: flex; justify-content: flex-end; }
+
+    .btn-lacak {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 9px 28px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-lacak:hover { background-color: #357abd; }
+
+    .error-lacak {
+      font-size: 12px;
+      color: red;
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    /* Paket info card */
+    .paket-info {
+      display: none;
+      background-color: #4a90e2;
+      border-radius: 6px;
+      padding: 20px 24px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .paket-info.show { display: block; }
+
+    .paket-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .paket-nama { font-size: 15px; font-weight: bold; }
+    .paket-no { font-size: 13px; margin-top: 3px; opacity: 0.9; }
+    .paket-tgl { font-size: 12px; text-align: right; opacity: 0.85; line-height: 1.6; }
+    .paket-rute { font-size: 12px; opacity: 0.9; text-transform: uppercase; margin-top: 6px; }
+    .paket-alamat { font-size: 12px; opacity: 0.8; text-transform: uppercase; margin-top: 3px; }
+
+    /* Timeline */
+    .timeline-section {
+      display: none;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 24px;
+    }
+
+    .timeline-section.show { display: block; }
+    .timeline-section h4 { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 20px; }
+
+    .timeline { position: relative; padding-left: 28px; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background-color: #e0e0e0;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -23px;
+      top: 3px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: #ccc;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #ccc;
+    }
+
+    .timeline-item.selesai .timeline-dot {
+      background-color: #4a90e2;
+      box-shadow: 0 0 0 2px #4a90e2;
+    }
+
+    .timeline-item.proses .timeline-dot {
+      background-color: #f0ad4e;
+      box-shadow: 0 0 0 2px #f0ad4e;
+    }
+
+    .timeline-keterangan { flex: 1; }
+    .timeline-keterangan .status { font-size: 13px; color: #333; font-weight: bold; }
+    .timeline-keterangan .sub { font-size: 12px; color: #888; margin-top: 2px; }
+
+    .timeline-waktu { font-size: 12px; color: #888; white-space: nowrap; text-align: right; }
   </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
   <nav class="navbar">
-
     <div class="nav-item" id="nav-informasi">
-      <a href="#" onclick="tampilHalaman('informasi-bahan-ajar', 'nav-informasi'); return false;">
-        Informasi Bahan Ajar
-      </a>
+      <a href="#" onclick="tampilHalaman('informasi-bahan-ajar','nav-informasi');return false;">Informasi Bahan Ajar</a>
     </div>
-
     <div class="nav-item" id="nav-tracking">
-      <a href="#" onclick="tampilHalaman('tracking-pengiriman', 'nav-tracking'); return false;">
-        Tracking Pengiriman
-      </a>
+      <a href="#" onclick="tampilHalaman('tracking-pengiriman','nav-tracking');return false;">Tracking Pengiriman</a>
     </div>
-
     <div class="nav-item" id="nav-laporan">
-      <span>Laporan ▾</span>
+      <span>Laporan &#9660;</span>
       <div class="dropdown">
-        <a href="#" onclick="tampilHalaman('monitoring-progress', 'nav-laporan'); return false;">
-          Monitoring Progress DO Bahan Ajar
-        </a>
-        <a href="#" onclick="tampilHalaman('rekap-bahan-ajar', 'nav-laporan'); return false;">
-          Rekap Bahan Ajar
-        </a>
+        <a href="#" onclick="tampilHalaman('monitoring-progress','nav-laporan');return false;">Monitoring Progress DO Bahan Ajar</a>
+        <a href="#" onclick="tampilHalaman('rekap-bahan-ajar','nav-laporan');return false;">Rekap Bahan Ajar</a>
       </div>
     </div>
-
     <div class="nav-item" id="nav-histori">
-      <a href="#" onclick="tampilHalaman('histori-transaksi', 'nav-histori'); return false;">
-        Histori Transaksi Bahan Ajar
-      </a>
+      <a href="#" onclick="tampilHalaman('histori-transaksi','nav-histori');return false;">Histori Transaksi Bahan Ajar</a>
     </div>
-
   </nav>
 
   <!-- CONTENT -->
@@ -210,7 +305,6 @@
     <div class="page active" id="page-dashboard">
       <div class="page-title">Dashboard Aplikasi SITTA</div>
       <div class="greeting" id="greetingText">Selamat pagi</div>
-
       <div class="info-cards">
         <div class="info-card">
           <div class="card-label">Total Bahan Ajar</div>
@@ -234,41 +328,59 @@
     <!-- Informasi Bahan Ajar -->
     <div class="page" id="page-informasi-bahan-ajar">
       <div class="page-title">Informasi Bahan Ajar</div>
-      <div class="placeholder">
-        <p>Konten halaman ini belum tersedia.</p>
-      </div>
+      <div class="placeholder"><p>Konten halaman ini belum tersedia.</p></div>
     </div>
 
     <!-- Tracking Pengiriman -->
     <div class="page" id="page-tracking-pengiriman">
       <div class="page-title">Tracking Pengiriman</div>
-      <div class="placeholder">
-        <p>Konten halaman ini belum tersedia.</p>
+      <br>
+
+      <div class="tracking-form">
+        <div class="form-row">
+          <label for="noDO">No. DO/Billing</label>
+          <input type="text" id="noDO" placeholder="Masukkan nomor DO atau Billing" />
+        </div>
+        <div class="error-lacak" id="errorNoDO">Nomor DO/Billing tidak boleh kosong</div>
+        <div class="btn-row">
+          <button class="btn-lacak" onclick="lacakPaket()">Lacak</button>
+        </div>
+      </div>
+
+      <div class="paket-info" id="paketInfo">
+        <div class="paket-top">
+          <div>
+            <div class="paket-nama" id="infNama"></div>
+            <div class="paket-no" id="infNo"></div>
+          </div>
+          <div class="paket-tgl" id="infTgl"></div>
+        </div>
+        <div class="paket-rute" id="infRute"></div>
+        <div class="paket-alamat" id="infAlamat"></div>
+      </div>
+
+      <div class="timeline-section" id="timelineSection">
+        <h4>Perjalanan Paket</h4>
+        <div class="timeline" id="timelineList"></div>
       </div>
     </div>
 
     <!-- Monitoring Progress -->
     <div class="page" id="page-monitoring-progress">
       <div class="page-title">Monitoring Progress DO Bahan Ajar</div>
-      <div class="placeholder">
-        <p>Konten halaman ini belum tersedia.</p>
-      </div>
+      <div class="placeholder"><p>Konten halaman ini belum tersedia.</p></div>
     </div>
 
     <!-- Rekap Bahan Ajar -->
     <div class="page" id="page-rekap-bahan-ajar">
       <div class="page-title">Rekap Bahan Ajar</div>
-      <div class="placeholder">
-        <p>Konten halaman ini belum tersedia.</p>
-      </div>
+      <div class="placeholder"><p>Konten halaman ini belum tersedia.</p></div>
     </div>
 
     <!-- Histori Transaksi -->
     <div class="page" id="page-histori-transaksi">
       <div class="page-title">Histori Transaksi Bahan Ajar</div>
-      <div class="placeholder">
-        <p>Konten halaman ini belum tersedia.</p>
-      </div>
+      <div class="placeholder"><p>Konten halaman ini belum tersedia.</p></div>
     </div>
 
   </div>
@@ -278,47 +390,112 @@
     function setSapaan() {
       var jam = new Date().getHours();
       var sapaan;
-
-      if (jam >= 5 && jam < 12) {
-        sapaan = 'Selamat pagi';
-      } else if (jam >= 12 && jam < 15) {
-        sapaan = 'Selamat siang';
-      } else if (jam >= 15 && jam < 19) {
-        sapaan = 'Selamat sore';
-      } else {
-        sapaan = 'Selamat malam';
-      }
-
+      if (jam >= 5 && jam < 12) { sapaan = 'Selamat pagi'; }
+      else if (jam >= 12 && jam < 15) { sapaan = 'Selamat siang'; }
+      else if (jam >= 15 && jam < 19) { sapaan = 'Selamat sore'; }
+      else { sapaan = 'Selamat malam'; }
       document.getElementById('greetingText').textContent = sapaan;
     }
 
     setSapaan();
 
     function tampilHalaman(id, navId) {
-      // sembunyikan semua page
       var pages = document.querySelectorAll('.page');
-      for (var i = 0; i < pages.length; i++) {
-        pages[i].classList.remove('active');
-      }
-
-      // tampilkan page yang dipilih
+      for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
       var target = document.getElementById('page-' + id);
-      if (target) {
-        target.classList.add('active');
-      }
-
-      // reset semua nav active
+      if (target) { target.classList.add('active'); }
       var navItems = document.querySelectorAll('.nav-item');
-      for (var j = 0; j < navItems.length; j++) {
-        navItems[j].classList.remove('active');
+      for (var j = 0; j < navItems.length; j++) { navItems[j].classList.remove('active'); }
+      var activeNav = document.getElementById(navId);
+      if (activeNav) { activeNav.classList.add('active'); }
+    }
+
+    // Data dummy tracking
+    var dataPaket = {
+      'DO-2021-001': {
+        nama: 'BUDI SANTOSO',
+        no: '18503984974',
+        tgl: '2021-03-10\n15:56:02',
+        rute: 'TANGERANG SELATAN  -->  MAKASSAR',
+        alamat: 'JL. URIP SUMOHARJO NO.5 KELURAHAN KARUWISI',
+        timeline: [
+          { status: 'Selesai antar di MAKASSAR', sub: 'Diterima oleh Budi', waktu: '2021-03-20  13:34:59', tipe: 'selesai' },
+          { status: 'Proses antar di MAKASSAR', sub: '', waktu: '2021-03-20  09:05:06', tipe: 'proses' },
+          { status: 'Diteruskan ke Kantor Antaran MAKASSAR', sub: '', waktu: '2021-03-20  09:05:00', tipe: 'proses' },
+          { status: 'Tiba di Hub SPP MAKASSAR', sub: '', waktu: '2021-03-19  22:05:42', tipe: '' },
+          { status: 'Diteruskan ke Hub SPP MAKASSAR', sub: '', waktu: '2021-03-19  23:05:36', tipe: '' },
+          { status: 'Diteruskan ke Kantor Antaran Lubukpakam', sub: '', waktu: '2021-03-18  14:08:11', tipe: '' }
+        ]
+      },
+      'DO-2021-002': {
+        nama: 'SITI RAHMA',
+        no: '28601234567',
+        tgl: '2021-04-05\n08:30:00',
+        rute: 'JAKARTA  -->  SURABAYA',
+        alamat: 'JL. RAYA DARMO NO.23 KELURAHAN DARMO',
+        timeline: [
+          { status: 'Selesai antar di SURABAYA', sub: 'Diterima oleh Siti', waktu: '2021-04-10  14:20:00', tipe: 'selesai' },
+          { status: 'Proses antar di SURABAYA', sub: '', waktu: '2021-04-10  08:00:00', tipe: 'proses' },
+          { status: 'Tiba di Hub SURABAYA', sub: '', waktu: '2021-04-09  20:15:00', tipe: '' },
+          { status: 'Berangkat dari Hub JAKARTA', sub: '', waktu: '2021-04-08  18:00:00', tipe: '' }
+        ]
+      }
+    };
+
+    function lacakPaket() {
+      var noDO = document.getElementById('noDO').value.trim();
+      var errorEl = document.getElementById('errorNoDO');
+
+      if (noDO == '') {
+        errorEl.style.display = 'block';
+        document.getElementById('paketInfo').classList.remove('show');
+        document.getElementById('timelineSection').classList.remove('show');
+        return;
       }
 
-      // aktifkan nav yang sesuai
-      var activeNav = document.getElementById(navId);
-      if (activeNav) {
-        activeNav.classList.add('active');
+      errorEl.style.display = 'none';
+
+      var paket = dataPaket[noDO];
+
+      if (!paket) {
+        alert('Nomor DO/Billing tidak ditemukan. Coba: DO-2021-001 atau DO-2021-002');
+        document.getElementById('paketInfo').classList.remove('show');
+        document.getElementById('timelineSection').classList.remove('show');
+        return;
       }
+
+      // isi info paket
+      document.getElementById('infNama').textContent = paket.nama;
+      document.getElementById('infNo').textContent = paket.no;
+      document.getElementById('infTgl').innerHTML = paket.tgl.replace('\n', '<br>');
+      document.getElementById('infRute').textContent = paket.rute;
+      document.getElementById('infAlamat').textContent = paket.alamat;
+      document.getElementById('paketInfo').classList.add('show');
+
+      // isi timeline
+      var html = '';
+      for (var i = 0; i < paket.timeline.length; i++) {
+        var item = paket.timeline[i];
+        html += '<div class="timeline-item ' + item.tipe + '">';
+        html += '<div class="timeline-dot"></div>';
+        html += '<div class="timeline-keterangan">';
+        html += '<div class="status">' + item.status + '</div>';
+        if (item.sub) {
+          html += '<div class="sub">' + item.sub + '</div>';
+        }
+        html += '</div>';
+        html += '<div class="timeline-waktu">' + item.waktu + '</div>';
+        html += '</div>';
+      }
+
+      document.getElementById('timelineList').innerHTML = html;
+      document.getElementById('timelineSection').classList.add('show');
     }
+
+    // Enter key pada input lacak
+    document.getElementById('noDO').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { lacakPaket(); }
+    });
   </script>
 
 </body>
