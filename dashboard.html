@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - SITTA</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item>a,
+        .nav-item>span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 14px 18px;
+            color: #444;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.2s, color 0.2s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-item>a:hover,
+        .nav-item>span:hover {
+            background-color: #f0f6ff;
+            color: #4a90e2;
+        }
+
+        .nav-item.active>a,
+        .nav-item.active>span {
+            color: #4a90e2;
+            border-bottom: 3px solid #4a90e2;
+            background-color: #f0f6ff;
+        }
+
+        /* dropdown */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            min-width: 240px;
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 11px 16px;
+            font-size: 14px;
+            color: #444;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background-color: #f0f6ff;
+            color: #4a90e2;
+        }
+
+        /* ── CONTENT ── */
+        .content {
+            padding: 28px 32px;
+        }
+
+        /* ── PAGES ── */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        .greeting {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Info cards */
+        .info-cards {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+            padding: 20px 24px;
+            flex: 1;
+            min-width: 160px;
+            border-top: 3px solid #4a90e2;
+        }
+
+        .info-card .card-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .info-card .card-value {
+            font-size: 26px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Placeholder */
+        .placeholder {
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            padding: 60px;
+            text-align: center;
+            color: #bbb;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .placeholder p {
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="nav-item" id="nav-informasi">
+            <a href="#" onclick="tampilHalaman('informasi-bahan-ajar', 'nav-informasi'); return false;">
+                Informasi Bahan Ajar
+            </a>
+        </div>
+
+        <div class="nav-item" id="nav-tracking">
+            <a href="#" onclick="tampilHalaman('tracking-pengiriman', 'nav-tracking'); return false;">
+                Tracking Pengiriman
+            </a>
+        </div>
+
+        <div class="nav-item" id="nav-laporan">
+            <span>Laporan ▾</span>
+            <div class="dropdown">
+                <a href="#" onclick="tampilHalaman('monitoring-progress', 'nav-laporan'); return false;">
+                    Monitoring Progress DO Bahan Ajar
+                </a>
+                <a href="#" onclick="tampilHalaman('rekap-bahan-ajar', 'nav-laporan'); return false;">
+                    Rekap Bahan Ajar
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-item" id="nav-histori">
+            <a href="#" onclick="tampilHalaman('histori-transaksi', 'nav-histori'); return false;">
+                Histori Transaksi Bahan Ajar
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- Dashboard -->
+        <div class="page active" id="page-dashboard">
+            <div class="page-title">Dashboard Aplikasi SITTA</div>
+            <div class="greeting" id="greetingText">Selamat pagi</div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="card-label">Total Bahan Ajar</div>
+                    <div class="card-value">1.240</div>
+                </div>
+                <div class="info-card">
+                    <div class="card-label">Sedang Dikirim</div>
+                    <div class="card-value">87</div>
+                </div>
+                <div class="info-card">
+                    <div class="card-label">Sudah Diterima</div>
+                    <div class="card-value">1.103</div>
+                </div>
+                <div class="info-card">
+                    <div class="card-label">Pending</div>
+                    <div class="card-value">50</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informasi Bahan Ajar -->
+        <div class="page" id="page-informasi-bahan-ajar">
+            <div class="page-title">Informasi Bahan Ajar</div>
+            <div class="placeholder">
+                <p>Konten halaman ini belum tersedia.</p>
+            </div>
+        </div>
+
+        <!-- Tracking Pengiriman -->
+        <div class="page" id="page-tracking-pengiriman">
+            <div class="page-title">Tracking Pengiriman</div>
+            <div class="placeholder">
+                <p>Konten halaman ini belum tersedia.</p>
+            </div>
+        </div>
+
+        <!-- Monitoring Progress -->
+        <div class="page" id="page-monitoring-progress">
+            <div class="page-title">Monitoring Progress DO Bahan Ajar</div>
+            <div class="placeholder">
+                <p>Konten halaman ini belum tersedia.</p>
+            </div>
+        </div>
+
+        <!-- Rekap Bahan Ajar -->
+        <div class="page" id="page-rekap-bahan-ajar">
+            <div class="page-title">Rekap Bahan Ajar</div>
+            <div class="placeholder">
+                <p>Konten halaman ini belum tersedia.</p>
+            </div>
+        </div>
+
+        <!-- Histori Transaksi -->
+        <div class="page" id="page-histori-transaksi">
+            <div class="page-title">Histori Transaksi Bahan Ajar</div>
+            <div class="placeholder">
+                <p>Konten halaman ini belum tersedia.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Sapaan sesuai jam
+        function setSapaan() {
+            var jam = new Date().getHours();
+            var sapaan;
+
+            if (jam >= 5 && jam < 12) {
+                sapaan = 'Selamat pagi';
+            } else if (jam >= 12 && jam < 15) {
+                sapaan = 'Selamat siang';
+            } else if (jam >= 15 && jam < 19) {
+                sapaan = 'Selamat sore';
+            } else {
+                sapaan = 'Selamat malam';
+            }
+
+            document.getElementById('greetingText').textContent = sapaan;
+        }
+
+        setSapaan();
+
+        function tampilHalaman(id, navId) {
+            // sembunyikan semua page
+            var pages = document.querySelectorAll('.page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+
+            // tampilkan page yang dipilih
+            var target = document.getElementById('page-' + id);
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // reset semua nav active
+            var navItems = document.querySelectorAll('.nav-item');
+            for (var j = 0; j < navItems.length; j++) {
+                navItems[j].classList.remove('active');
+            }
+
+            // aktifkan nav yang sesuai
+            var activeNav = document.getElementById(navId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

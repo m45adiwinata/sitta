@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 36px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 360px;
+    }
+
+    h2 {
+      margin-bottom: 24px;
+      font-size: 22px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      border-color: #4a90e2;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      font-size: 13px;
+      color: #4a90e2;
+      text-decoration: none;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      padding: 11px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #357abd;
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .register a {
+      color: #4a90e2;
+      text-decoration: none;
+    }
+
+    .register a:hover {
+      text-decoration: underline;
+    }
+
+    .error {
+      font-size: 12px;
+      color: red;
+      margin-top: -12px;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      width: 420px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px 30px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #aaa;
+      width: auto;
+      padding: 0 4px;
+    }
+
+    .modal-close:hover {
+      color: #333;
+      background: none;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      outline: none;
+      background: white;
+      color: #333;
+      transition: border-color 0.2s;
+    }
+
+    select:focus {
+      border-color: #4a90e2;
+    }
+
+    .modal button.btn-daftar {
+      width: 100%;
+      padding: 11px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 4px;
+    }
+
+    .modal button.btn-daftar:hover {
+      background-color: #357abd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Selamat Datang</h2>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Masukkan email" />
+    <div class="error" id="emailError">Email tidak boleh kosong</div>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Masukkan password" />
+    <div class="error" id="passwordError">Password tidak boleh kosong</div>
+
+    <a href="#" class="forgot">Lupa password?</a>
+
+    <button onclick="login()">Masuk</button>
+
+    <div class="register">
+      Belum punya akun? <a href="#" onclick="bukaModal()">Daftar</a>
+    </div>
+  </div>
+
+  <!-- Modal Daftar -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Daftar Akun</h3>
+        <button class="modal-close" onclick="tutupModal()">&#x2715;</button>
+      </div>
+
+      <label for="reg-nama">Nama</label>
+      <input type="text" id="reg-nama" placeholder="Masukkan nama lengkap" />
+      <div class="error" id="errorNama">Nama tidak boleh kosong</div>
+
+      <label for="reg-email">Email</label>
+      <input type="email" id="reg-email" placeholder="Masukkan email" />
+      <div class="error" id="errorEmail">Email tidak boleh kosong</div>
+
+      <label for="reg-password">Password</label>
+      <input type="password" id="reg-password" placeholder="Masukkan password" />
+      <div class="error" id="errorPassword">Password tidak boleh kosong</div>
+
+      <label for="reg-role">Role</label>
+      <select id="reg-role">
+        <option value="">-- Pilih Role --</option>
+        <option value="UPBJJ-UT">UPBJJ-UT</option>
+        <option value="Mahasiswa">Mahasiswa</option>
+        <option value="Dosen">Dosen</option>
+        <option value="Admin">Admin</option>
+      </select>
+      <div class="error" id="errorRole">Role tidak boleh kosong</div>
+
+      <label for="reg-lokasi">Lokasi</label>
+      <input type="text" id="reg-lokasi" placeholder="Contoh: UPBJJ Makassar" />
+      <div class="error" id="errorLokasi">Lokasi tidak boleh kosong</div>
+
+      <button class="btn-daftar" onclick="daftar()">Daftar</button>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var emailError = document.getElementById('emailError');
+      var passwordError = document.getElementById('passwordError');
+
+      var valid = true;
+
+      if (email == '') {
+        emailError.style.display = 'block';
+        valid = false;
+      } else {
+        emailError.style.display = 'none';
+      }
+
+      if (password == '') {
+        passwordError.style.display = 'block';
+        valid = false;
+      } else {
+        passwordError.style.display = 'none';
+      }
+
+      if (valid) {
+        alert('Login berhasil!');
+      }
+    }
+
+    function bukaModal() {
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function tutupModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      // reset form
+      document.getElementById('reg-nama').value = '';
+      document.getElementById('reg-email').value = '';
+      document.getElementById('reg-password').value = '';
+      document.getElementById('reg-role').value = '';
+      document.getElementById('reg-lokasi').value = '';
+      document.getElementById('errorNama').style.display = 'none';
+      document.getElementById('errorEmail').style.display = 'none';
+      document.getElementById('errorPassword').style.display = 'none';
+      document.getElementById('errorRole').style.display = 'none';
+      document.getElementById('errorLokasi').style.display = 'none';
+    }
+
+    // Tutup modal kalau klik di luar
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target == this) {
+        tutupModal();
+      }
+    });
+
+    function daftar() {
+      var nama = document.getElementById('reg-nama').value;
+      var email = document.getElementById('reg-email').value;
+      var password = document.getElementById('reg-password').value;
+      var role = document.getElementById('reg-role').value;
+      var lokasi = document.getElementById('reg-lokasi').value;
+
+      var valid = true;
+
+      if (nama == '') {
+        document.getElementById('errorNama').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('errorNama').style.display = 'none';
+      }
+
+      if (email == '') {
+        document.getElementById('errorEmail').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('errorEmail').style.display = 'none';
+      }
+
+      if (password == '') {
+        document.getElementById('errorPassword').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('errorPassword').style.display = 'none';
+      }
+
+      if (role == '') {
+        document.getElementById('errorRole').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('errorRole').style.display = 'none';
+      }
+
+      if (lokasi == '') {
+        document.getElementById('errorLokasi').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('errorLokasi').style.display = 'none';
+      }
+
+      if (valid) {
+        alert('Pendaftaran berhasil! Silakan login.');
+        tutupModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
