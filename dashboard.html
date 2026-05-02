@@ -44,6 +44,11 @@
             </a>
         </div>
 
+        <div class="nav-item" style="margin-left: auto;">
+            <a href="#" onclick="logout()">
+                Logout
+            </a>
+        </div>
     </nav>
 
     <!-- CONTENT -->
@@ -77,8 +82,47 @@
         <!-- Informasi Bahan Ajar -->
         <div class="page" id="page-informasi-bahan-ajar">
             <div class="page-title">Informasi Bahan Ajar</div>
-            <div class="placeholder">
-                <p>Konten halaman ini belum tersedia.</p>
+            <br>
+            <div class="bahan-ajar-form">
+                <div class="form-row">
+                    <label for="namaBarang">Nama Bahan Ajar</label>
+                    <input type="text" id="namaBarang" placeholder="Masukkan nama bahan ajar" />
+                </div>
+                <div class="error-nama-barang" id="errorNamaBarang">Isi minimal 3 karakter</div>
+            </div>
+            <br>
+            <div id="view-list">
+                <table class="tabel-barang">
+                    <thead>
+                        <tr>
+                            <th>Kode Barang</th>
+                            <th>Nama Barang</th>
+                            <th>Jenis</th>
+                            <th>Stok</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelBahanAjar"></tbody>
+                </table>
+            </div>
+
+            <div id="view-detail" style="display:none;">
+                <div class="detail-header">
+                    <button class="btn-kembali" onclick="kembaliKeList()">&larr; Kembali</button>
+                </div>
+
+                <div class="detail-body">
+                    <div class="detail-cover-wrap">
+                        <img id="detailCover" src="" alt="Cover"
+                            onerror="this.style.display='none';document.getElementById('coverFallback').style.display='flex';" />
+                        <div id="coverFallback" style="display:none;">
+                            <span style="font-size:48px;">&#128218;</span>
+                            <span>Cover tidak tersedia</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-fields" id="detailFields"></div>
+                </div>
             </div>
         </div>
 

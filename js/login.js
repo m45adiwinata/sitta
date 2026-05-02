@@ -9,6 +9,7 @@ function login() {
     if (email == '') {
         emailError.style.display = 'block';
         valid = false;
+        return;
     } else {
         emailError.style.display = 'none';
     }
@@ -16,6 +17,7 @@ function login() {
     if (password == '') {
         passwordError.style.display = 'block';
         valid = false;
+        return;
     } else {
         passwordError.style.display = 'none';
     }
@@ -108,3 +110,11 @@ function lupaPassword() {
     alert('Password anda adalah: ' + data.password);
     tutupModalLupaPassword();
 }
+
+// Enter key pada input email/password
+document.querySelector('#email').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { login(); }
+});
+document.querySelector('#password').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { login(); }
+});

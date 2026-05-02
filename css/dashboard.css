@@ -153,6 +153,62 @@ body {
     justify-content: flex-end;
 }
 
+/* BAHAN AJAR */
+.error-nama-barang {
+    font-size: 12px;
+    color: red;
+    display: none;
+    margin-bottom: 10px;
+}
+
+.bahan-ajar-form {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.bahan-ajar-form .form-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.bahan-ajar-form label {
+    font-size: 14px;
+    color: #555;
+    white-space: nowrap;
+    min-width: 110px;
+}
+
+.bahan-ajar-form input[type="text"] {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.bahan-ajar-form input[type="text"]:focus {
+    border-color: #4a90e2;
+}
+
+.bahan-ajar-form .btn-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.error-nama-barang {
+    font-size: 12px;
+    color: red;
+    display: none;
+    margin-bottom: 10px;
+}
+
 .btn-lacak {
     background-color: #4a90e2;
     color: white;
@@ -366,4 +422,126 @@ body {
     color: #888;
     white-space: nowrap;
     text-align: right;
+}
+
+/* === TABEL BAHAN AJAR === */
+.tabel-barang {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.tabel-barang thead tr {
+  background: #f0f6ff;
+  text-align: left;
+}
+
+.tabel-barang th {
+  padding: 11px 14px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #4a90e2;
+  font-weight: bold;
+}
+
+.tabel-barang tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tabel-barang tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tabel-barang td {
+  padding: 10px 14px;
+  color: #333;
+}
+
+.tabel-barang .link-lihat {
+  color: #4a90e2;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.tabel-barang .link-lihat:hover {
+  text-decoration: underline;
+}
+
+/* === DETAIL BAHAN AJAR === */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.btn-kembali {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #4a90e2;
+  font-size: 13px;
+  padding: 7px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.btn-kembali:hover {
+  background-color: #f0f6ff;
+}
+
+.detail-body {
+  display: flex;
+  gap: 28px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.detail-cover-wrap {
+  width: 280px;
+  min-width: 280px;
+  background: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.detail-cover-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-fields {
+  flex: 1;
+  padding: 28px 28px 28px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-content: start;
+}
+
+.detail-field-item label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.detail-field-item .field-val {
+  font-size: 14px;
+  color: #333;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fafafa;
 }
